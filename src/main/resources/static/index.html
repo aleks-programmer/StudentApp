@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="webjars/bootstrap/4.1.3/css/bootstrap.min.css"
+          rel="stylesheet">
+    <link href="css/style.css"
+          rel="stylesheet">
+    <title>Students</title>
+</head>
+<body>
+<div class="content">
+<div class="importCSV"><form id="importCSV" method="post" enctype="multipart/form-data">
+    <input type="file" value="file" name="file" /><button id="submitCSV">Import students...</button>
+    <button id="addStudentButton">Add Student</button>
+</form></div>
+<div class="search">
+<input type="text" id="searchInput" placeholder="Search.." />
+<button id="searchButton">Search</button>
+</div>
+<table id="studentsTable" class="table table-striped table-bordered" style="width:100%">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>School Year</th>
+        <th>Campus</th>
+        <th>Entry Date</th>
+        <th>Grade Level</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+</div>
+<script src="webjars/jquery/3.3.1-1/jquery.min.js"></script>
+<script src="webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

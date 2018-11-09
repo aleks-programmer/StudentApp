@@ -1,0 +1,9 @@
+.search {
+    float: right;
+}
+.importCSV {
+    float: left;
+}
+#editIcon {
+    cursor: pointer;
+}
