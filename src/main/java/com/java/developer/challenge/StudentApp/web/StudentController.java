@@ -3,6 +3,7 @@ package com.java.developer.challenge.StudentApp.web;
 import com.java.developer.challenge.StudentApp.domain.Student;
 import com.java.developer.challenge.StudentApp.service.StudentSearchCriteria;
 import com.java.developer.challenge.StudentApp.service.StudentService;
+import com.java.developer.challenge.StudentApp.web.records.StudentRecord;
 import com.opencsv.CSVReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +19,7 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 
 @Controller
 public class StudentController {
@@ -71,9 +70,7 @@ public class StudentController {
                 DateTimeFormatter formatter =
                         new DateTimeFormatterBuilder().appendPattern("M/d/yyyy")
                                 .toFormatter();
-                Date date = Date.from(LocalDate.parse(nextRecord[3], formatter)
-                        .atStartOfDay(ZoneId.systemDefault()).toInstant());
-                student.setEntryDate(date);
+                student.setEntryDate(LocalDate.parse(nextRecord[3], formatter).atStartOfDay());
                 student.setGradeLevel(Integer.valueOf(nextRecord[4]));
                 student.setName(nextRecord[5]);
                 importStudents.add(student);
@@ -88,7 +85,19 @@ public class StudentController {
     @PostMapping(value = "/saveStudent", consumes = "application/json", produces = "application/json")
     @Transactional
     @ResponseBody
-    public ResponseEntity<Student> saveStudent(@RequestBody Student student) {
+    public ResponseEntity<Student> saveStudent(@RequestBody StudentRecord studentRecord) {
+        Student student = new Student();
+        student.setId(studentRecord.getId());
+        student.setName(studentRecord.getName());
+        student.setGradeLevel(studentRecord.getGradeLevel());
+        student.setCampus(studentRecord.getCampus());
+        student.setSchoolYear(studentRecord.getSchoolYear());
+
+        String entryDate = studentRecord.getEntryDate();
+        LocalDateTime localDate =
+                LocalDate.parse(entryDate, DateTimeFormatter.ofPattern("M/d/yyyy")).atStartOfDay();
+        student.setEntryDate(localDate);
+
         return ResponseEntity.ok(this.studentService.saveStudent(student));
     }
 }

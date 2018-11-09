@@ -15,7 +15,7 @@ public class StudentRecord implements Serializable {
     @JsonProperty
     private Integer campus;
     @JsonProperty
-    private Date entryDate;
+    private String entryDate;
     @JsonProperty
     private Integer gradeLevel;
     @JsonProperty
@@ -45,11 +45,11 @@ public class StudentRecord implements Serializable {
         this.campus = campus;
     }
 
-    public Date getEntryDate() {
+    public String getEntryDate() {
         return entryDate;
     }
 
-    public void setEntryDate(Date entryDate) {
+    public void setEntryDate(String entryDate) {
         this.entryDate = entryDate;
     }
 

@@ -19,7 +19,7 @@ $(document).ready(function () {
                 id: null,
                 schoolYear: $(".addStudent input#schoolYear")[0].value,
                 campus: $(".addStudent input#campus")[0].value,
-                entryDate: new Date($(".addStudent input#entryDate")[0].value),
+                entryDate: $(".addStudent input#entryDate")[0].value,
                 gradeLevel: $(".addStudent input#gradeLevel")[0].value,
                 name: $(".addStudent input#name")[0].value
             };
@@ -78,7 +78,7 @@ $(document).ready(function () {
                 id: $(".editStudent input#id")[0].value,
                 schoolYear: $(".editStudent input#schoolYear")[0].value,
                 campus: $(".editStudent input#campus")[0].value,
-                entryDate: new Date($(".editStudent input#entryDate")[0].value),
+                entryDate: $(".editStudent input#entryDate")[0].value,
                 gradeLevel: $(".editStudent input#gradeLevel")[0].value,
                 name: $(".editStudent input#name")[0].value
             };

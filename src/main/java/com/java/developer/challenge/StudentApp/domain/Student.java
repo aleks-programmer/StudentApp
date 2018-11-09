@@ -2,7 +2,8 @@ package com.java.developer.challenge.StudentApp.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "student")
@@ -22,7 +23,7 @@ public class Student implements Serializable {
     private Integer campus;
 
     @Column(name = "entry_date", nullable = false)
-    private Date entryDate;
+    private LocalDateTime entryDate;
 
     @Column(name = "grade_level", nullable = false)
     private Integer gradeLevel;
@@ -54,11 +55,11 @@ public class Student implements Serializable {
         this.campus = campus;
     }
 
-    public Date getEntryDate() {
+    public LocalDateTime getEntryDate() {
         return entryDate;
     }
 
-    public void setEntryDate(Date entryDate) {
+    public void setEntryDate(LocalDateTime entryDate) {
         this.entryDate = entryDate;
     }
 
