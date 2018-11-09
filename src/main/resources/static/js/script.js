@@ -1,7 +1,7 @@
 $(document).ready(function () {
     if ($('#studentsTable tbody').length) {
         $.ajax({
-            url: "http://localhost:8080/getAllStudents",
+            url: "/getAllStudents",
             type: 'GET',
             success: function(data) {
                 $('#studentsTable tbody').html(getStudentsContent(data));
@@ -24,7 +24,7 @@ $(document).ready(function () {
                 name: $(".addStudent input#name")[0].value
             };
             $.ajax({
-                url: "http://localhost:8080/saveStudent",
+                url: "/saveStudent",
                 type: 'POST',
                 data: JSON.stringify(object),
                 success: function (data) {
@@ -53,7 +53,7 @@ $(document).ready(function () {
 
         var studentID = getUrlParameter("studentID");
         $.ajax({
-            url: "http://localhost:8080/findStudentByID",
+            url: "/findStudentByID",
             type: 'GET',
             data: {
                 id: studentID
@@ -83,7 +83,7 @@ $(document).ready(function () {
                 name: $(".editStudent input#name")[0].value
             };
             $.ajax({
-                url: "http://localhost:8080/saveStudent",
+                url: "/saveStudent",
                 type: 'POST',
                 data: JSON.stringify(object),
                 success: function (data) {
@@ -108,7 +108,7 @@ $(document).ready(function () {
 
     $('body').on('click', 'img#editIcon', function() {
         var studentID = this.closest('tr').id;
-        window.location = "http://localhost:8080/editStudent.html?studentID=" + studentID;
+        window.location = "/editStudent.html?studentID=" + studentID;
     });
 
     var getStudentsContent = function(students) {
@@ -135,7 +135,7 @@ $(document).ready(function () {
 
     var handleSearch = function(value) {
         $.ajax({
-            url: "http://localhost:8080/searchStudents",
+            url: "/searchStudents",
             type: 'GET',
             data: {
                 value: value
@@ -150,13 +150,13 @@ $(document).ready(function () {
         e.preventDefault();
         var formData = new FormData($("#importCSV")[0]);
         $.ajax({
-            url: "http://localhost:8080/importStudentsFromCSV",
+            url: "/importStudentsFromCSV",
             type: 'POST',
             data: formData,
             success: function (data) {
                 var content = '';
                 $.ajax({
-                    url: "http://localhost:8080/getAllStudents",
+                    url: "/getAllStudents",
                     type: 'GET',
                     success: function(data) {
                         $('#studentsTable tbody').html(getStudentsContent(data));
